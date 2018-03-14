@@ -23,8 +23,8 @@
       </p>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jsbug@1.1.0/jsbug.min.js"></script>
     <script>
+      const debug = !function(o,e){"undefined"!=typeof module?module.exports=e():"function"==typeof define&&"object"==typeof define.amd?define(e):this.mod=e()}(0,function(){"use strict";if("undefined"==typeof window)return function(o){console.log(o)};var o=null!==window.localStorage.getItem("jsbug"),e="color: #fff;font-size:12pt;font-weight:normal;padding:2px 10px;border-radius:10px;";return window.location.href.indexOf("jsbug=true")>-1&&(window.localStorage.setItem("jsbug",!0),o=!0),window.location.href.indexOf("jsbug=false")>-1&&(window.localStorage.setItem("jsbug",!1),o=!1),o&&window.console.log("%c! Debug enabled. Set jsbug=false to turn off",e+"background:#002C6D"),function(n,d){if(o){d=d||{};var i="#0088CF",t="♢ ";if(0===n.indexOf("|")&&(i="#FCB813",t=""),void 0!==d.success&&(i=d.success?"#00A551":"#EC1C24",t=d.success?"* ":"@ Failure! "),d.color&&(i=d.color),d.prepend&&(t=d.prepend+" "),void 0!==d.group){window.console.groupCollapsed("%c"+t+n,e+"background:"+i);for(var r=0;r<d.group.length;r++)window.console.log(d.group[r]);window.console.groupEnd()}else window.console.log("%c"+t+n,e+"background:"+i)}}});
       new Vue({
         el: '#wrapper',
         data: {
@@ -39,7 +39,7 @@
         },
         methods: {
           trigger ({ message, options }) {
-            console.log('Whut', options)
+            debug('Whut', options)
             // jsbug(message, options)
           }
         },
