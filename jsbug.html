@@ -9,7 +9,9 @@
       * { margin: 0; padding: 0; box-sizing: border-box; } 
       body { font-family: 'Lato', sans-serif; }
       #wrapper { max-width: 800px; margin: 0 auto; padding: 20px; }
-      h1 { color: #23547F; margin: 40px 0; }
+      h1 { color: #23547F; margin-top: 40px 0; }
+      p { margin: 20px 0; }
+      p.intro { font-weight: bold; }
       li { cursor: pointer; list-style-type: none; margin-bottom: 10px; }
       li:hover { text-decoration: underline; }
     </style>
@@ -17,7 +19,9 @@
   <body>
     <div id="wrapper">
       <h1>Jsbug</h1>
-      <p>Open your console and try clicking the links</p>
+      <p class="intro">
+        Open your console and try clicking the links
+      </p>
       <ul>
         <li @click="debug('Default log message')">
           Default log message
