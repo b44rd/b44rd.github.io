@@ -6,11 +6,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,900,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; } 
+      body { font-family: 'Lato', sans-serif; }
+      .wrapper { max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #23547F; }
+      
+      /* @media (min-width:500px){} */
+    </style>
   </head>
   <body>
-    
+    <div class="wrapper">
+      <h1>{{ title }}</h1>
+      <p v-for="(link, index) in links" @click="trigger({ message: link.message, options: link.options })" :key="index">
+        {{ link.title }}
+      </p>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js"></script>
-    <script>console.log('Hi')</script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbug@1.1.0/jsbug.min.js"></script>
+    <script>
+      new Vue({
+        el: 'html',
+        data: {
+          title: 'Various stuff',
+          links: [
+            {
+              title: 'jsbug',
+              method: ''
+            }
+          ]
+        },
+        methods: {
+          trigger ({ message, options }) {
+            jsbug(message, options)
+          }
+        }
+      })
+    </script>
   </body>
 </html>
