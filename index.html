@@ -11,8 +11,7 @@
       body { font-family: 'Lato', sans-serif; }
       #wrapper { max-width: 800px; margin: 0 auto; padding: 20px; }
       h1 { color: #23547F; margin: 40px 0; }
-      ul { list-style-type: none; }
-      li { cursor: pointer; }
+      li { cursor: pointer; list-style-type: none; margin-bottom: 10px; }
       li:hover { text-decoration: underline; }
       
       /* @media (min-width:500px){} */
@@ -21,33 +20,35 @@
   <body>
     <div id="wrapper">
       <h1>Jsbug demo</h1>
-      <li @click="debug('Default log message')">
-        Default log message
-      </li>
-      <li @click="debug('String with any type of color', { color: '#fc6'})">
-        String with any type of color
-      </li>
-      <li @click="debug('String with custom prepend', { prepend: '???' })">
-        String with custom prepend
-      </li>
-      <li @click="debug('Success log message', { success: true })">
-        Success log message
-      </li>
-      <li @click="debug('Success log message  with collapsed dataset', { success: true, group: [{ dataset: ['one', 'two', 'three'] }] })">
-        Success log message with collapsed dataset
-      </li>
-      <li @click="debug('Error log message', { success: false })">
-        Error log message
-      </li>
-      <li @click="debug('Error log message with collapsed errors', { success: false, group: [{ errors: [{ error: 'Some error' }] }] })">
-        Error log message with collapsed errors
-      </li>
-      <li @click="fakeSuccess()">
-        Simulate successful API call
-      </li>
-      <li @click="fakeFailure()">
-        Simulate API call with errors
-      </li>
+      <ul>
+        <li @click="debug('Default log message')">
+          Default log message
+        </li>
+        <li @click="debug('String with any type of color', { color: '#fc6'})">
+          String with any type of color
+        </li>
+        <li @click="debug('String with custom prepend', { prepend: '???' })">
+          String with custom prepend
+        </li>
+        <li @click="debug('Success log message', { success: true })">
+          Success log message
+        </li>
+        <li @click="debug('Success log message  with collapsed dataset', { success: true, group: [{ dataset: ['one', 'two', 'three'] }] })">
+          Success log message with collapsed dataset
+        </li>
+        <li @click="debug('Error log message', { success: false })">
+          Error log message
+        </li>
+        <li @click="debug('Error log message with collapsed errors', { success: false, group: [{ errors: [{ error: 'Some error' }] }] })">
+          Error log message with collapsed errors
+        </li>
+        <li @click="fakeSuccess()">
+          Simulate successful API call
+        </li>
+        <li @click="fakeFailure()">
+          Simulate API call with errors
+        </li>
+      </ul>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js"></script>
     <script>
