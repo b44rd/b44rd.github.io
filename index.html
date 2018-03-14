@@ -1,8 +1,8 @@
 
 <!doctype html>
-<html id="doc">
+<html>
   <head>
-    <title v-html="title"></title>
+    <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,900,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -16,7 +16,7 @@
     </style>
   </head>
   <body>
-    <div class="wrapper">
+    <div id="app">
       <h1>{{ title }}</h1>
       <p v-for="(link, index) in links" @click="trigger({ message: link.message, options: link.options })" :key="index">
         {{ link.title }}
@@ -26,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jsbug@1.1.0/jsbug.min.js"></script>
     <script>
       new Vue({
-        el: 'doc',
+        el: 'app',
         data: {
           title: 'Various stuff',
           links: [
@@ -41,6 +41,9 @@
           trigger ({ message, options }) {
             jsbug(message, options)
           }
+        },
+        created () {
+          window.document.title = this.title
         }
       })
     </script>
