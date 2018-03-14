@@ -18,29 +18,39 @@
   <body>
     <div id="wrapper">
       <h1>{{ title }}</h1>
-      <p v-for="(link, index) in links" @click="debug({ str: link.message, options: link.options })" :key="index">
-        {{ link.title }}
-      </p>
+      <li @click="debug('Default log message')">
+        Default log message
+      </li>
+      <li @click="debug('Success log message', { success: true })">
+        Success log message
+      </li>
+      <li @click="debug('Success log message  with collapsed dataset', { success: true, group: [{ dataset: ['one', 'two', 'three'] }] })">
+        Success log message with collapsed dataset
+      </li>
+      <li @click="debug('Error log message', { success: false })">
+        Error log message
+      </li>
+      <li @click="debug('Error log message with collapsed errors', { success: false, group: [{ errors: [{ error: 'Some error' }] }] })">
+        Error log message with collapsed errors
+      </li>
+      <li @click="fakeSuccess()">
+        Simulate successful API call
+      </li>
+      <li @click="fakeFailure()">
+        Simulate API call with errors
+      </li>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js"></script>
     <script>
       new Vue({
         el: '#wrapper',
         data: {
-          title: 'Various stuff',
-          jsbug: true,
-          styles: "color: #fff;font-size:12pt;font-weight:normal;padding:2px 10px;border-radius:10px;",
-          links: [
-            {
-              title: 'jsbug',
-              message: 'Hi',
-              options: { color: '#f6c', group: [{ name: 'Something' }, { name: 'Something else' }] }
-            }
-          ]
+          title: 'Jsbug demo'
         },
         methods: {
-          debug ({ str, options }) {
+          debug (str, options) {
             options = options || {};
+            const styles = "color: #fff;font-size:12pt;font-weight:normal;padding:2px 10px;border-radius:5px;"
             let background = "#0088CF"
             let prepend = "♢ "
 
@@ -67,16 +77,26 @@
             }
 
             if (typeof options.group !== "undefined") {
-              window.console.groupCollapsed("%c" + prepend + str, this.styles + "background:" + background)
+              window.console.groupCollapsed("%c" + prepend + str, styles + "background:" + background)
               for (var i = 0; i < options.group.length; i++) {
                 window.console.log(options.group[i])
               }
               window.console.groupEnd()
             } else {
-              window.console.log("%c" + prepend + str, this.styles + "background:" + background)
+              window.console.log("%c" + prepend + str, styles + "background:" + background)
             }
+          },
+          fakeSuccess () {
+            this.debug('Initiate API request', { group: [{ getUser: 1 }] })
+            this.debug('| Requesting API', { group: [{ getUser: 1 }] })
+            this.debug('Dataset returned', { success: true, group: [{ userName: 'Chuck Norris' }] })
+          },
+          fakeFailure () {
+            this.debug('Initiate API request', { group: [{ getUser: 'd' }] })
+            this.debug('| Requesting API', { group: [{ getUser: 'd' }] })
+            this.debug('Errors returned', { success: false, group: [{ errors: ['getUser requires a numeric structure', 'no user returned'] }] })
           }
-        },
+        }
         created () {
           window.document.title = this.title
         }
