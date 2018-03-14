@@ -18,7 +18,7 @@
   </head>
   <body>
     <div id="wrapper">
-      <h1>Jsbug</h1>
+      <h1>{{ title }}</h1>
       <p class="intro">
         Open your console and try clicking the links
       </p>
@@ -61,7 +61,7 @@
       new Vue({
         el: '#wrapper',
         data: {
-          title: 'Jsbug demo'
+          title: 'Jsbug demo page'
         },
         methods: {
           debug (str, options) {
