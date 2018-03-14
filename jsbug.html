@@ -66,6 +66,9 @@
         },
         methods: {
           debug (str, options) {
+            // This is the main function exposed by jsbug, which you normally would import/require from 'jsbug'
+            // In this example, it´s simply inlined as a debug function
+            // NOTE: The ability to turn jsbug on/off is currently omitted due to the demo purpose
             options = options || {};
             const styles = "color: #fff;font-size:12pt;font-weight:normal;padding:2px 10px;border-radius:5px;"
             let background = "#0088CF"
