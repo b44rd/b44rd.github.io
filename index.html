@@ -17,9 +17,15 @@
   </head>
   <body>
     <div id="wrapper">
-      <h1>{{ title }}</h1>
+      <h1>Jsbug demo</h1>
       <li @click="debug('Default log message')">
         Default log message
+      </li>
+      <li @click="debug('String with any type of color', { color: '#fc6'})">
+        String with any type of color
+      </li>
+      <li @click="debug('String with custom prepend', { prepend: '???' })">
+        String with custom prepend
       </li>
       <li @click="debug('Success log message', { success: true })">
         Success log message
